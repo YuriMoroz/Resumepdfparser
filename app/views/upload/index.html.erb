@@ -1,0 +1,7 @@
+<h1>Парсинг PDF файлов резюме с hh.ru</h1>
+
+<%= form_with url: "/upload", multipart: true do |form| %>
+  <p><%= file_field_tag 'upload[]', multiple: true %></p>
+
+  <%= submit_tag "Загрузить" %>
+<% end %>
