@@ -10,3 +10,6 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+Rack::Utils.multipart_part_limit = 512
+#Rails.application.config.middleware.insert_before Rack::Runtime, Rack::Timeout, service_timeout: 180, wait_timeout: 180, wait_overtime: 180

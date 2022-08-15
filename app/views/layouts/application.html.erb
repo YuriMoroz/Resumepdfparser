@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Resumepdfparser</title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +14,7 @@
   <body>
     <%= yield %>
     <% if flash[:notice].present? %>
-      <p><%= link_to "Скачать", upload_download_result_path(), method: :get %></p>
+      <p><%= link_to flash[:notice], upload_download_result_path(), method: :get %></p>
     <% end %>
   </body>
 </html>

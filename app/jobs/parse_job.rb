@@ -1,5 +1,6 @@
-class ApplicationController < ActionController::Base
-
+class ParseJob < ApplicationJob
+  queue_as :default
+  
   def get_contscts(text, reg, count = 0)
     result = []
   
@@ -67,4 +68,20 @@ class ApplicationController < ActionController::Base
     return result	
   end
   
+  def perform (*args)
+    serverfiles = args[0]
+    csv = CSV.open(UploadController::SERVERFILENAME, "wb", col_sep: ";", encoding: 'cp1251') 
+    serverfiles.each do |filename|
+      row = parse_pdf(filename)
+      File.delete(filename)
+
+      csv << row
+    end
+
+    csv.close
+    
+    file = File.open(UploadController::DONEFLAGFILENAME, 'wb')
+    file.close
+end
+
 end
