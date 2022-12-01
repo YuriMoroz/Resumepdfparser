@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
     elem = text.match(reg).to_s
   
-    if count = 1
+    if count == 1
       return elem
     end
 
